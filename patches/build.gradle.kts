@@ -10,18 +10,17 @@ plugins {
     alias(libs.plugins.animalsniffer)
 }
 
-group = "app.template"
+group = "io.github.xd33m.watchtime"
 
 patches {
-    // TODO: Update this section with your project details.
     about {
-        name = "UserXYZ Patches"
-        description = "Patches for apps I like"
-        source = "git@github.com:UserXYZ/morphe-patches.git"
-        author = "Awesome dev"
+        name = "Watchtime Tracker patches"
+        description = "Reports YouTube Shorts to the Watchtime Tracker app. For use with Morphe; needs the official Morphe patches."
+        source = "https://github.com/xD33m/watchtime-tracker-patches"
+        author = "xD33m"
         contact = "na"
-        website = "na"
-        license = "GPLv3"
+        website = "https://github.com/xD33m/watchtime-tracker-patches"
+        license = "GPL-3.0"
     }
 }
 
