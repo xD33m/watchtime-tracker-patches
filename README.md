@@ -36,19 +36,11 @@ if the Watchtime Tracker app is not installed or you turned the extra source off
 ## Patches
 
 <!-- PATCHES_START -->
+> **[v1.0.0](https://github.com/xD33m/watchtime-tracker-patches/releases/tag/v1.0.0)**&nbsp;&nbsp;&middot;&nbsp;&nbsp;`main`&nbsp;&nbsp;&middot;&nbsp;&nbsp;**1 patch** across **1 app**&nbsp;&nbsp;&middot;&nbsp;&nbsp;[Full details](PATCHES.md)
 
-<!-- Do not modify this section by hand. The patch list is generated when release.yml creates a new release.
-     
-     This section shows one row for each app. The details of each patch are in PATCHES.md,
-     which is generated at the same time.
-
-     If you wish to manually keep this list updated then remove the PATCHES_START and PATCHES_END 
-     comment blocks entirely. -->
-
-#### A list of your patches will automatically be shown here after your first patches release is created.
-
-&nbsp;
-
+| # | App | Patches | Version | Package |
+|---|---|---|---|---|
+| 1 | [**YouTube**](PATCHES.md#youtube-comgoogleandroidyoutube) | 1 | — | [`com.google.android.youtube`](https://play.google.com/store/apps/details?id=com.google.android.youtube) |
 <!-- PATCHES_END -->
 
 ## License
