@@ -86,4 +86,15 @@ public class ShortsTrackerTest {
         assertNull(t.onTime(0, 100, true, true, ""));
         assertNull(t.onTime(0, 100, true, true, null));
     }
+
+    @Test
+    public void a_stuck_Short_resumes_without_progress_only_once() {
+        assertEquals(Report.playing("s1"), t.onTime(0, 0, true, true, "s1"));
+        assertEquals(Report.stopped(), t.onWatchdog(3_000));
+        assertEquals(Report.playing("s1"), t.onTime(3_000, 0, true, true, "s1"));
+        assertEquals(Report.stopped(), t.onWatchdog(6_000));
+        assertNull(t.onTime(6_000, 0, true, true, "s1"));
+        assertFalse(t.isPlaying());
+        assertEquals(Report.playing("s1"), t.onTime(7_000, 1_000, true, true, "s1")); // time moves again
+    }
 }

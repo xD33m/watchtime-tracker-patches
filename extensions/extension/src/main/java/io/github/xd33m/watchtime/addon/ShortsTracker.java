@@ -19,6 +19,9 @@ public final class ShortsTracker {
     private long lastVideoTimeMs;
     private long lastRefreshMs;
     private long lastReportMs;
+    /** The id last played, and whether it last started again without its time moving (see onTime). */
+    private String lastId;
+    private boolean resumedWithoutProgress;
 
     /**
      * One time event. {@code shortsOpen} and {@code noneOrHidden} are the Shorts player's state and whether the player
@@ -31,7 +34,12 @@ public final class ShortsTracker {
         boolean eligible = shortsOpen && noneOrHidden && videoId != null && !videoId.isEmpty();
         if (!eligible) return stop();
         if (!videoId.equals(playingId)) {
-            // A new Short, or the same one resumed: the first event after a pause may repeat the paused time.
+            // A new Short, or the same one resumed: the first event after a pause may repeat the paused time. A Short
+            // that keeps sending its old time (stuck, buffering) may start again so only once until its time moves.
+            boolean sameTime = videoId.equals(lastId) && videoTimeMs == lastVideoTimeMs;
+            if (sameTime && resumedWithoutProgress) return null;
+            resumedWithoutProgress = sameTime;
+            lastId = videoId;
             playingId = videoId;
             lastVideoTimeMs = videoTimeMs;
             lastRefreshMs = nowMs;
@@ -40,6 +48,7 @@ public final class ShortsTracker {
         }
         if (videoTimeMs == lastVideoTimeMs) return null; // a repeated event proves nothing
         lastVideoTimeMs = videoTimeMs; // forwards, or back to the start when the Short loops
+        resumedWithoutProgress = false;
         lastRefreshMs = nowMs;
         if (nowMs - lastReportMs < BEAT_INTERVAL_MS) return null;
         lastReportMs = nowMs;
