@@ -25,3 +25,4 @@ configure<app.morphe.patches.gradle.SettingsExtension> {
         proguardFiles(rootProject.projectDir.resolve("extensions/proguard-rules.pro").toString())
     }
 }
+include(":host-stub")

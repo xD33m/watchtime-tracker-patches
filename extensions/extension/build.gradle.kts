@@ -7,5 +7,6 @@ android {
 }
 
 dependencies {
+    compileOnly(project(":host-stub"))
     testImplementation(libs.junit)
 }
